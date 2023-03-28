@@ -1,0 +1,61 @@
+service: software-joke-generator
+frameworkVersion: '3'
+useDotenv: true
+
+plugins:
+  - serverless-esbuild
+
+provider:
+  name: aws
+  stage: dev
+  region: eu-west-1
+  profile: kendi-hesabim
+  tracing:
+    lambda: true
+  
+  runtime: nodejs18.x
+  memorySize: 512
+  timeout: 10
+  logRetentionInDays: 60
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - 's3:*'
+          Resource: '*'
+
+package:
+  individually: true
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude:
+        - aws-sdk
+        - canvas
+    platform: 'node'
+    concurrency: 10
+    plugins: ./esbuild-plugins.js
+
+resources:
+  Resources:
+    jokeBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: cihan-software-joke-generator-bucket
+
+functions:
+  api:
+    handler: src/lambda/index.handler
+    timeout: 28
+    events:
+      - schedule: rate(1 day)
+    environment:
+      BUCKET: ${self:resources.Resources.jokeBucket.Properties.BucketName}
+      OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+      NODE_OPTIONS: '--enable-source-maps'
