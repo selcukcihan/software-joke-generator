@@ -1,7 +1,6 @@
 import { Inject, Service } from 'typedi'
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { OpenAIApi } from 'openai'
-const TextToSVG = require('text-to-svg')
 const text2Svg = require('text-svg')
 
 @Service()
@@ -25,10 +24,7 @@ export class JokeGenerator {
     const generated = response.data.choices[0].message?.content || ''
 
     console.log('Generated response: ' + generated)
-    // const textToSVG = TextToSVG.loadSync()
-    // const svg = textToSVG.getSVG(generated)
     const svg = text2Svg(generated)
-
 
     await this.s3Client.send(new PutObjectCommand({
       CacheControl: "no-cache, no-store, must-revalidate",
