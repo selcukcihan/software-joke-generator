@@ -1,4 +1,4 @@
-service: software-joke-generator
+service: software-joke-generator-v2
 frameworkVersion: '3'
 useDotenv: true
 
@@ -8,7 +8,7 @@ plugins:
 provider:
   name: aws
   stage: dev
-  region: eu-west-1
+  region: us-east-1
   profile: kendi-hesabim
   tracing:
     lambda: true
@@ -46,7 +46,13 @@ resources:
     jokeBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: cihan-software-joke-generator-bucket
+        BucketName: cihan-software-joke-generator-v2-bucket
+        AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
 
 functions:
   api:

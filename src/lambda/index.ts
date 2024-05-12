@@ -7,7 +7,7 @@ import { Configuration, OpenAIApi } from 'openai'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
 
-Container.set('S3_CLIENT', new S3Client({ region: 'eu-west-1' }))
+Container.set('S3_CLIENT', new S3Client({ region: 'us-east-1' }))
 Container.set('S3_BUCKET', process.env.BUCKET)
 
 async function handler(event: any, context: any) {

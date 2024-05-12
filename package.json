@@ -1,10 +1,11 @@
 {
-  "name": "software-joke-generator",
+  "name": "software-joke-generator-v2",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "build": "serverless package",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "destroy": "serverless remove"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.245.0",
@@ -20,7 +21,7 @@
     "dotenv": "16.0.3",
     "esbuild": "^0.16.14",
     "esbuild-plugin-tsc": "^0.3.1",
-    "serverless": "^3.26.0",
+    "serverless": "^3.38.0",
     "serverless-esbuild": "^1.35.3",
     "ts-node": "10.9.1",
     "typescript": "^4.9.4"

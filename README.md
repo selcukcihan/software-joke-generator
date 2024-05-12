@@ -3,4 +3,4 @@
 
 ### Joke of the day
 
-![Joke of the day](https://cihan-software-joke-generator-bucket.s3.eu-west-1.amazonaws.com/joke.svg)
+![Joke of the day](https://cihan-software-joke-generator-v2-bucket.s3.us-east-1.amazonaws.com/joke.svg)
