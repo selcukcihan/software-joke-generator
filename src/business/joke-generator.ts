@@ -76,7 +76,10 @@ export class JokeGenerator {
       ContentType: "application/json",
     }))
 
-    const svg = text2Svg(generated)
+    const svg = text2Svg(generated, {
+      backgroundColor: 'white',
+      padding: 10,
+    })
 
     await this.s3Client.send(new PutObjectCommand({
       CacheControl: "no-cache, no-store, must-revalidate",
