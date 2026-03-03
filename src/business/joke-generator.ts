@@ -18,7 +18,8 @@ export class JokeGenerator {
     }))
     let existing = JSON.parse(await existingResponse.Body?.transformToString() || '[]')
 
-    const model = this.ai.getGenerativeModel({ model: 'gemini-1.5-pro-latest' })
+    const modelName = process.env.GOOGLE_MODEL || 'gemini-2.5-flash'
+    const model = this.ai.getGenerativeModel({ model: modelName })
   
     const generationConfig = {
       temperature: 1,

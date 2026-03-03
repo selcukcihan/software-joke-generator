@@ -19,7 +19,7 @@ export class JokeGenerator {
     let existing = JSON.parse(await existingResponse.Body?.transformToString() || '[]')
 
     let input = {
-      model: "gpt-3.5-turbo",
+      model: "gpt-4.1-nano",
       messages: [
         {role: "user", content: "Make a joke about software engineering."},
       ]

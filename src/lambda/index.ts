@@ -2,7 +2,7 @@ import 'source-map-support/register'
 import 'reflect-metadata'
 import { Container } from 'typedi'
 import { S3Client } from '@aws-sdk/client-s3'
-import { JokeGenerator } from '../business/joke-generator'
+import { JokeGenerator } from '../business/joke-generator-openai'
 import { Configuration, OpenAIApi } from 'openai'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
