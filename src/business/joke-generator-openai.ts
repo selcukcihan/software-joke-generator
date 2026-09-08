@@ -26,7 +26,7 @@ export class JokeGenerator {
     } as any
     if (existing.length > 0) {
       if (existing.length > 20) {
-        existing = existing.slice(20)
+        existing = existing.slice(1)
       }
       const examples = existing.map((e: any) => `- ${e}\n`).join('')
       input.messages.push(
@@ -47,7 +47,10 @@ export class JokeGenerator {
     }))
 
     console.log('Generated response: ' + generated)
-    const svg = text2Svg(generated)
+    const svg = text2Svg(generated, {
+      backgroundColor: 'white',
+      padding: 10,
+    })
 
     await this.s3Client.send(new PutObjectCommand({
       CacheControl: "no-cache, no-store, must-revalidate",
